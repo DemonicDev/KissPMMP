@@ -3,6 +3,7 @@
 namespace kisspmmp;
 
 use pocketmine\plugin\PluginBase;
+use pocketmine\world\particle\HeartParticle;
 
 class main extends PluginBase{
 
@@ -11,5 +12,9 @@ class main extends PluginBase{
     $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
   }
 
-  public function kissAction($player, $ps, $world){} //todo
+  public function kissAction($player, $ps, $world){
+    $particle = new HeartParticle();
+    $pos = $player->getPosition()->asVector3(); //make later custom by config
+    $world->addParticle($pos, $particle);
+  } //todo
 }
